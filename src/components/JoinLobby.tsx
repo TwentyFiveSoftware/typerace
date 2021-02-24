@@ -8,7 +8,7 @@ const JoinLobby = () => {
     const [username, setUsername] = useState<string>('');
     const [lobbyId, setLobbyId] = useState<string>('');
 
-    const submit = () => socket.emit('join', username, lobbyId);
+    const submit = () => socket.emit('joinLobby', username, lobbyId);
 
     return (
         <Container>
