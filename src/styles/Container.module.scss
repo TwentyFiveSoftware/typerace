@@ -1,8 +1,10 @@
 .container {
     border-radius: 1rem;
-    padding: 4rem;
+    padding: 5rem 4rem;
     width: 40rem;
     max-width: 100%;
     background: var(--color-main);
     box-shadow: var(--shadow);
+    display: grid;
+    justify-items: center;
 }

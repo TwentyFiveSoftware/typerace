@@ -1,9 +1,9 @@
 .button {
-    width: 100%;
+    width: max-content;
     text-align: center;
-    padding: 1rem 4rem;
+    padding: 1.4rem 6rem;
     background-color: var(--color-accent);
-    border-radius: 0.5rem;
+    border-radius: 1rem;
     font-size: 1.8rem;
     color: var(--color-text);
     user-select: none;
