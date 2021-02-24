@@ -1,0 +1,13 @@
+.button {
+    width: 100%;
+    text-align: center;
+    padding: 1rem 4rem;
+    background-color: var(--color-accent);
+    border-radius: 0.5rem;
+    font-size: 1.8rem;
+    color: var(--color-text);
+    user-select: none;
+    cursor: pointer;
+    font-weight: 600;
+    white-space: nowrap;
+}
