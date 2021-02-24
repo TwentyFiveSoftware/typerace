@@ -1,15 +1,18 @@
 import React from 'react';
+import { io } from 'socket.io-client';
 import styles from './styles/App.module.scss';
-import JoinLobby from './components/JoinLobby';
 import Header from './components/Header';
-import Lobby from './components/Lobby';
+import JoinLobby from './components/JoinLobby';
+// import Lobby from './components/Lobby';
+
+export const socket = io(process.env.REACT_APP_SOCKET_ENDPOINT ?? '');
 
 const App = () => {
     return (
         <div className={styles.page}>
             <Header />
-            {/*<JoinLobby />*/}
-            <Lobby />
+            <JoinLobby />
+            {/*<Lobby />*/}
         </div>
     );
 };
