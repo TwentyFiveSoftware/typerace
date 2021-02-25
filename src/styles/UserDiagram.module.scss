@@ -1,39 +1,47 @@
 .container {
     margin: 2rem 0 2rem 0;
 }
+
 .userInfoRow {
     display: flex;
     justify-content: start;
     margin-bottom: 1rem;
 }
+
 .lighterText {
     font-size: 1.7rem;
     color: var(--color-dark-gray);
 }
+
 .lightText {
     font-size: 1.7rem;
     color: var(--color-light-gray);
 }
+
 .diagramContainer {
     background: var(--color-main);
     height: 100px;
-    width: 60vw;
     border-radius: 0.5rem;
 }
+
 .userInfoRowSpacer {
     font-size: 1.7rem;
-    color: var(--color-light-gray);
+    color: var(--color-dark-gray);
     width: 3rem;
     text-align: center;
 }
+
 .diagramContainer {
     padding: 3rem;
     display: flex;
 }
+
 .diagramRoad {
     border-bottom: .2rem solid var(--color-dark-gray);
     width: calc(100% - 5rem);
+    padding-bottom: 5rem;
 }
+
 .diagramFlag {
     width: 5rem;
     padding: 0 0 0 1.5rem;
@@ -41,16 +49,20 @@
     display: flex;
     justify-content: start;
 }
+
 .useableRoad {
-    width: calc(100% - 5.1rem);
+    width: calc(100% - 6rem);
 }
+
 .flagIcon {
     color: var(--color-dark-gray);
     font-size: 4rem;
 }
+
 .carBox {
     transition: all .8s;
 }
+
 .carIcon {
-    font-size: 4rem;
+    font-size: 4.5rem;
 }
