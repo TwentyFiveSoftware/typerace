@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { io } from 'socket.io-client';
 import styles from './styles/App.module.scss';
 import Header from './components/Header';
-import JoinLobby from './components/JoinLobby';
-import Lobby from './components/Lobby';
+// import JoinLobby from './components/JoinLobby';
+// import Lobby from './components/Lobby';
 import { LobbyState } from './type/LobbyState';
+import Game from './components/Game';
 
 export const socket = io(process.env.REACT_APP_SOCKET_ENDPOINT ?? '');
 
@@ -18,8 +19,9 @@ const App = () => {
     return (
         <div className={styles.page}>
             <Header />
-            {!lobbyState && <JoinLobby />}
-            {lobbyState && <Lobby lobbyState={lobbyState} />}
+            {/*{!lobbyState && <JoinLobby />}*/}
+            {/*{lobbyState && <Lobby lobbyState={lobbyState} />}*/}
+            <Game />
         </div>
     );
 };

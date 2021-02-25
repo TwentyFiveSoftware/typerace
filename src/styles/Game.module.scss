@@ -1,0 +1,15 @@
+.game {
+    height: 100%;
+    display: grid;
+    grid-template-rows: 1fr 25rem;
+    padding: 2rem;
+}
+
+.playerSpace {
+    display: flex;
+    flex-direction: column;
+}
+
+.inputSpace {
+
+}
