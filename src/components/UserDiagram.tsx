@@ -7,7 +7,7 @@ const UserDiagram: FunctionComponent<{ username: string; speed: number; progress
     username,
     speed,
     progress,
-    color
+    color,
 }) => {
     return (
         <div className={styles.container}>
@@ -24,15 +24,15 @@ const UserDiagram: FunctionComponent<{ username: string; speed: number; progress
             <div className={styles.diagramContainer}>
                 <div className={styles.diagramRoad}>
                     <div className={styles.useableRoad}>
-                        <div style={{ marginLeft: `${progress * 100}%`, marginBottom: 10 }} className={styles.carBox}>
-                            <FontAwesomeIcon icon={faCarSide} style={{color: color}} className={styles.carIcon} />
+                        <div style={{ marginLeft: `${progress}%`, marginBottom: 10 }} className={styles.carBox}>
+                            <FontAwesomeIcon icon={faCarSide} style={{ color: color }} className={styles.carIcon} />
                         </div>
                     </div>
                 </div>
                 <div className={styles.diagramFlag}>
                     <FontAwesomeIcon
                         icon={faFlagCheckered}
-                        style={{ color: progress === 1 ? color : '#505050' }}
+                        style={{ color: progress === 100 ? color : '#505050' }}
                         className={styles.flagIcon}
                     />
                 </div>

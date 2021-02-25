@@ -1,13 +1,16 @@
 import React, { FunctionComponent } from 'react';
 import styles from '../styles/ProgressInfoContainer.module.scss';
-import { ProgressInfo } from '../type/ProgressInfo';
+import { GameState } from '../type/GameState';
+import { socket } from '../App';
 
-const ProgressInfoContainer: FunctionComponent<ProgressInfo> = ({
-    text,
+const ProgressInfoContainer: FunctionComponent<{ gameState: GameState; currentTextPosition: number }> = ({
+    gameState,
     currentTextPosition,
-    typingSpeed,
-    timePassed,
 }) => {
+    const { text, players } = gameState;
+    const typingSpeed = players.find(player => player.socketId === socket.id)?.typingSpeed ?? 0;
+    const timePassed = 0;
+
     return (
         <section className={styles.container}>
             <div className={styles.top}>
