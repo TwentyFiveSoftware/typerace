@@ -1,13 +1,18 @@
 .button {
-    width: max-content;
+    width: 100%;
     text-align: center;
     padding: 1.4rem 6rem;
-    background-color: var(--color-accent);
+    border: 0.2rem solid var(--color-accent);
+    color: var(--color-accent);
     border-radius: 1rem;
     font-size: 1.8rem;
-    color: var(--color-text);
     user-select: none;
     cursor: pointer;
     font-weight: 600;
     white-space: nowrap;
+    transition: 0.1s background-color;
+
+    &:hover {
+        background-color: rgba(#83A868, 0.1);
+    }
 }
