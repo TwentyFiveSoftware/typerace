@@ -1,16 +1,16 @@
 import React, { FunctionComponent } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCarSide, faFlagCheckered } from '@fortawesome/free-solid-svg-icons';
-import styles from '../styles/UserDiagram.module.scss';
+import styles from '../styles/Road.module.scss';
 
-const UserDiagram: FunctionComponent<{ username: string; speed: number; progress: number; color: string }> = ({
+const Road: FunctionComponent<{ username: string; speed: number; progress: number; color: string }> = ({
     username,
     speed,
     progress,
     color,
 }) => {
     return (
-        <div className={styles.container}>
+        <section className={styles.container}>
             <div className={styles.userInfoRow}>
                 <p className={styles.lightText}>{username}</p>
                 <div className={styles.userInfoRowSpacer}>
@@ -21,15 +21,15 @@ const UserDiagram: FunctionComponent<{ username: string; speed: number; progress
                     <span className={styles.lighterText}>K/min</span>
                 </p>
             </div>
-            <div className={styles.diagramContainer}>
-                <div className={styles.diagramRoad}>
+            <div className={styles.roadContainer}>
+                <div className={styles.road}>
                     <div className={styles.useableRoad}>
                         <div style={{ marginLeft: `${progress}%`, marginBottom: 10 }} className={styles.carBox}>
                             <FontAwesomeIcon icon={faCarSide} style={{ color: color }} className={styles.carIcon} />
                         </div>
                     </div>
                 </div>
-                <div className={styles.diagramFlag}>
+                <div>
                     <FontAwesomeIcon
                         icon={faFlagCheckered}
                         style={{ color: progress === 100 ? color : '#505050' }}
@@ -37,8 +37,8 @@ const UserDiagram: FunctionComponent<{ username: string; speed: number; progress
                     />
                 </div>
             </div>
-        </div>
+        </section>
     );
 };
 
-export default UserDiagram;
+export default Road;

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import { socket } from '../App';
+import styles from '../styles/JoinLobby.module.scss';
 import Container from './Container';
 import InputBox from './InputBox';
 import Button from './Button';
-import { socket } from '../App';
-import styles from '../styles/JoinLobby.module.scss';
 
 const JoinLobby = () => {
     const [username, setUsername] = useState<string>('');
@@ -20,33 +20,35 @@ const JoinLobby = () => {
     }, []);
 
     return (
-        <Container>
-            <InputBox
-                label={'USERNAME'}
-                value={username}
-                onChange={(v: string) => {
-                    if (incorrectUsername) setIncorrectUsername(false);
-                    setUsername(v);
-                }}
-                length={30}
-                error={incorrectUsername}
-            />
+        <div onKeyDown={e => (e.key === 'Enter' ? submit() : null)}>
+            <Container>
+                <InputBox
+                    label={'USERNAME'}
+                    value={username}
+                    onChange={(v: string) => {
+                        if (incorrectUsername) setIncorrectUsername(false);
+                        setUsername(v);
+                    }}
+                    length={30}
+                    error={incorrectUsername}
+                />
 
-            <InputBox
-                label={'LOBBY ID (EMPTY FOR NEW LOBBY)'}
-                value={lobbyId}
-                onChange={(v: string) => {
-                    if (lobbyNotFound) setLobbyNotFound(false);
-                    setLobbyId(v.toUpperCase());
-                }}
-                length={5}
-                error={lobbyNotFound}
-            />
+                <InputBox
+                    label={'LOBBY ID (EMPTY FOR NEW LOBBY)'}
+                    value={lobbyId}
+                    onChange={(v: string) => {
+                        if (lobbyNotFound) setLobbyNotFound(false);
+                        setLobbyId(v.toUpperCase());
+                    }}
+                    length={5}
+                    error={lobbyNotFound}
+                />
 
-            <div className={styles.spacer} />
+                <div className={styles.spacer} />
 
-            <Button text={lobbyId.length === 0 ? 'CREATE LOBBY' : 'JOIN'} onClick={() => submit()} />
-        </Container>
+                <Button text={lobbyId.length === 0 ? 'CREATE LOBBY' : 'JOIN'} onClick={() => submit()} />
+            </Container>
+        </div>
     );
 };
 

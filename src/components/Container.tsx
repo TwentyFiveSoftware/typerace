@@ -2,7 +2,7 @@ import React, { FunctionComponent } from 'react';
 import styles from '../styles/Container.module.scss';
 
 const Container: FunctionComponent = ({ children }) => {
-    return <div className={styles.container}>{children}</div>;
+    return <section className={styles.container}>{children}</section>;
 };
 
 export default Container;

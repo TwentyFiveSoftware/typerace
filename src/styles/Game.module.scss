@@ -3,13 +3,29 @@
     display: grid;
     grid-template-rows: 1fr 25rem;
     padding: 2rem;
+    row-gap: 3rem;
 }
 
 .playerSpace {
     display: flex;
     flex-direction: column;
-}
+    overflow-y: auto;
+    height: max-content;
+    max-height: calc(100vh - 35rem);
+    padding-right: 1rem;
+    align-self: center;
 
-.inputSpace {
+    &::-webkit-scrollbar-track {
+        background-color: var(--color-main);
+    }
 
+    &::-webkit-scrollbar {
+        width: 0.5rem;
+        background-color: var(--color-main);
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: var(--color-main-light);
+        border-radius: 1rem;
+    }
 }

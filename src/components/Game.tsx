@@ -1,9 +1,11 @@
 import React, { FunctionComponent, useEffect, useState } from 'react';
 import styles from '../styles/Game.module.scss';
-import ProgressInfoContainer from './ProgressInfoContainer';
-import UserDiagram from './UserDiagram';
 import { GameState } from '../type/GameState';
 import { socket } from '../App';
+import ProgressInfoContainer from './ProgressInfoContainer';
+import Road from './Road';
+
+const PLAYER_COLORS = ['#74B9FF', '#83A868', '#FCAC6F', '#DF4A70', '#BE9CFC'];
 
 const Game: FunctionComponent<{ gameState: GameState }> = ({ gameState }) => {
     const [currentTextPosition, setCurrentTextPosition] = useState<number>(0);
@@ -27,17 +29,17 @@ const Game: FunctionComponent<{ gameState: GameState }> = ({ gameState }) => {
         <div className={styles.game}>
             <div className={styles.playerSpace}>
                 {gameState.players.map((player, index) => (
-                    <UserDiagram
+                    <Road
                         key={index}
                         username={player.username}
                         speed={player.typingSpeed}
                         progress={Math.floor((player.currentTextPosition * 100) / gameState.text.length)}
-                        color={'#63A8FE'}
+                        color={PLAYER_COLORS[index % PLAYER_COLORS.length]}
                     />
                 ))}
             </div>
 
-            <div className={styles.progressInfoSpace}>
+            <div>
                 <ProgressInfoContainer currentTextPosition={currentTextPosition} gameState={gameState} />
             </div>
         </div>
