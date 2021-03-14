@@ -28,20 +28,20 @@ const ProgressInfoContainer: FunctionComponent<{ gameState: GameState; currentTe
             <div className={styles.bottom}>
                 <div>
                     <span className={styles.text}>{player.typingSpeed}</span>
-                    <span className={styles.text__light}>K/min</span>
+                    <span className={styles.text__light}> K/min</span>
                 </div>
                 <div>
                     <span className={styles.text}>{currentTextPosition}</span>
                     <span className={styles.text__light}>/</span>
                     <span className={styles.text}>{text.length}</span>
-                    <span className={styles.text__light}>letters typed</span>
+                    <span className={styles.text__light}> letters typed</span>
                 </div>
                 <div>
                     <span className={styles.text}>{Math.floor((currentTextPosition * 100) / text.length)}</span>
                     <span className={styles.text__light}>% completed</span>
                 </div>
                 <div>
-                    <span className={styles.text}>{timePassed}</span>
+                    <span className={styles.text}>{timePassed < 0 ? 0 : timePassed}</span>
                     <span className={styles.text__light}>s passed</span>
                 </div>
             </div>

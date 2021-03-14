@@ -35,9 +35,11 @@ const WinPopup: FunctionComponent<{ gameState: GameState }> = ({ gameState }) =>
                             <td className={styles.alignRight}>
                                 {player.typingSpeed} <span className={styles.textLight}>K/min</span>
                             </td>
-                            {player.playAgain && (
+                            {ranking.some(p => p.playAgain) && (
                                 <td>
-                                    <FontAwesomeIcon icon={faUndoAlt} className={styles.wantsReplayIcon} />
+                                    {player.playAgain && (
+                                        <FontAwesomeIcon icon={faUndoAlt} className={styles.wantsReplayIcon} />
+                                    )}
                                 </td>
                             )}
                         </tr>
