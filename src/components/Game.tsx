@@ -4,6 +4,7 @@ import { GameState } from '../type/GameState';
 import { socket } from '../App';
 import ProgressInfoContainer from './ProgressInfoContainer';
 import Road from './Road';
+import WinPopup from './WinPopup';
 
 const PLAYER_COLORS = ['#74B9FF', '#83A868', '#FCAC6F', '#DF4A70', '#BE9CFC'];
 
@@ -42,6 +43,8 @@ const Game: FunctionComponent<{ gameState: GameState }> = ({ gameState }) => {
             <div>
                 <ProgressInfoContainer currentTextPosition={currentTextPosition} gameState={gameState} />
             </div>
+
+            {gameState.isFinished && <WinPopup gameState={gameState} />}
         </div>
     );
 };

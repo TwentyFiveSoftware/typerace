@@ -1,0 +1,93 @@
+.overlay {
+    position: fixed;
+    z-index: 99;
+    top: 6rem;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0.5;
+    background-color: var(--color-background);
+}
+
+.container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    z-index: 100;
+    max-width: 100vw;
+    transform: translate(-50%, -50%);
+    background-color: var(--color-background);
+    padding: 3rem 5rem;
+    box-shadow: var(--shadow);
+    border: 0.3rem solid var(--color-accent);
+    border-radius: 1rem;
+
+    display: grid;
+    row-gap: 1rem;
+}
+
+.top {
+    display: grid;
+    justify-items: center;
+}
+
+.icon {
+    font-size: 5.5rem;
+    color: var(--color-accent);
+    margin-bottom: 1rem;
+}
+
+.winnerName {
+    font-size: 2.3rem;
+    font-weight: 600;
+    color: var(--color-text);
+}
+
+.winnerSubtitle {
+    font-size: 1.5rem;
+    color: var(--color-text-light);
+    margin-top: -0.2rem;
+}
+
+.divider {
+    width: 100%;
+    height: 0.1rem;
+    background-color: var(--color-main);
+    margin: 2rem 0;
+}
+
+.mid {
+    padding: 0 2rem;
+    border-spacing: 0.5rem;
+
+    td {
+        white-space: nowrap;
+
+        &:not(td:last-child) {
+            padding-right: 2rem;
+        }
+    }
+}
+
+.playerInfo {
+    font-size: 1.8rem;
+    color: var(--color-text);
+}
+
+.playerRank {
+    color: var(--color-text-light);
+}
+
+.playerName {
+    padding-right: 8rem !important;
+}
+
+.textLight {
+    color: var(--color-light-gray);
+}
+
+.bottom {
+    margin-top: 4rem;
+    display: grid;
+    justify-items: center;
+}

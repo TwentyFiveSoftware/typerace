@@ -16,3 +16,11 @@
         background-color: rgba(#83A868, 0.1);
     }
 }
+
+.button__small {
+    @extend .button;
+
+    width: max-content;
+    padding: 1.3rem 5rem;
+    font-size: 1.7rem;
+}
