@@ -1,9 +1,10 @@
 import React, { FunctionComponent } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrophy } from '@fortawesome/free-solid-svg-icons';
+import { faTrophy, faUndoAlt } from '@fortawesome/free-solid-svg-icons';
 import styles from '../styles/WinPopup.module.scss';
 import Button from './Button';
 import { GameState } from '../type/GameState';
+import { socket } from '../App';
 
 const WinPopup: FunctionComponent<{ gameState: GameState }> = ({ gameState }) => {
     const { players } = gameState;
@@ -34,11 +35,16 @@ const WinPopup: FunctionComponent<{ gameState: GameState }> = ({ gameState }) =>
                             <td>
                                 {player.typingSpeed} <span className={styles.textLight}>K/min</span>
                             </td>
+                            {player.playAgain && (
+                                <td>
+                                    <FontAwesomeIcon icon={faUndoAlt} className={styles.wantsReplayIcon} />
+                                </td>
+                            )}
                         </tr>
                     ))}
                 </table>
                 <div className={styles.bottom}>
-                    <Button text={'PLAY AGAIN'} small={true} onClick={() => {}} />
+                    <Button text={'PLAY AGAIN'} small={true} onClick={() => socket.emit('togglePlayAgain')} />
                 </div>
             </div>
         </>

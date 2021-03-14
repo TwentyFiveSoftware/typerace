@@ -21,6 +21,8 @@ const Game: FunctionComponent<{ gameState: GameState }> = ({ gameState }) => {
 
         window.addEventListener('keydown', onKeyDown);
 
+        socket.on('restart', () => setCurrentTextPosition(0));
+
         return () => {
             window.removeEventListener('keydown', onKeyDown);
         };
