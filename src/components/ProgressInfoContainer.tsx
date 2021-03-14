@@ -8,8 +8,11 @@ const ProgressInfoContainer: FunctionComponent<{ gameState: GameState; currentTe
     currentTextPosition,
 }) => {
     const { text, players, gameStartTime } = gameState;
-    const typingSpeed = players.find(player => player.socketId === socket.id)?.typingSpeed ?? 0;
-    const timePassed = Math.floor((Date.now() - gameStartTime) / 1000);
+    const player = players.find(player => player.socketId === socket.id);
+
+    if (!player) return <></>;
+
+    const timePassed = Math.floor(((player.isFinished ? player.finishTime : Date.now()) - gameStartTime) / 1000);
 
     return (
         <section className={styles.container}>
@@ -24,7 +27,7 @@ const ProgressInfoContainer: FunctionComponent<{ gameState: GameState; currentTe
             </div>
             <div className={styles.bottom}>
                 <div>
-                    <span className={styles.text}>{typingSpeed}</span>
+                    <span className={styles.text}>{player.typingSpeed}</span>
                     <span className={styles.text__light}>K/min</span>
                 </div>
                 <div>
