@@ -28,11 +28,11 @@ const WinPopup: FunctionComponent<{ gameState: GameState }> = ({ gameState }) =>
                         <tr className={styles.playerInfo} key={index}>
                             <td className={styles.playerRank}>#{index + 1}</td>
                             <td className={styles.playerName}>{player.username}</td>
-                            <td className={styles.playerTime}>
+                            <td className={styles.alignRight}>
                                 {Math.floor((player.finishTime - gameState.gameStartTime) / 1000)}
                                 <span className={styles.textLight}>s</span>
                             </td>
-                            <td>
+                            <td className={styles.alignRight}>
                                 {player.typingSpeed} <span className={styles.textLight}>K/min</span>
                             </td>
                             {player.playAgain && (
