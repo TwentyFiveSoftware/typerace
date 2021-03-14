@@ -7,9 +7,9 @@ const ProgressInfoContainer: FunctionComponent<{ gameState: GameState; currentTe
     gameState,
     currentTextPosition,
 }) => {
-    const { text, players } = gameState;
+    const { text, players, gameStartTime } = gameState;
     const typingSpeed = players.find(player => player.socketId === socket.id)?.typingSpeed ?? 0;
-    const timePassed = 0;
+    const timePassed = Math.floor((Date.now() - gameStartTime) / 1000);
 
     return (
         <section className={styles.container}>
