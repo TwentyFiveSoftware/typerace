@@ -1,11 +1,10 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styles from '../styles/Lobby.module.scss';
 import Container from './Container';
 import Button from './Button';
 import LobbyUserItem from './LobbyUserItem';
-import { LobbyState } from '../type/LobbyState';
-import { socket } from '../App';
+import { LobbyStateContext, socket } from '../App';
 import {
     faBabyCarriage,
     faCaravan,
@@ -30,20 +29,22 @@ export const CAR_ICONS = [
     faTruckMonster,
 ];
 
-const Lobby: FunctionComponent<{ lobbyState: LobbyState }> = ({ lobbyState }) => {
-    const myCarIndex = lobbyState.players.find(player => player.socketId === socket.id)?.carIndex ?? 0;
+const Lobby: FunctionComponent = () => {
+    const { lobbyId, players } = useContext(LobbyStateContext) ?? { lobbyId: '', players: [] };
+
+    const myCarIndex = players.find(player => player.socketId === socket.id)?.carIndex ?? 0;
 
     return (
         <div className={styles.lobby}>
             <Container>
                 <h1 className={styles.title}>LOBBY</h1>
                 <p className={styles.subtitle}>
-                    ID: <span>{lobbyState.lobbyId}</span>
+                    ID: <span>{lobbyId}</span>
                 </p>
                 <div className={styles.separator} />
 
                 <ul className={styles.users}>
-                    {lobbyState.players.map((player, index) => (
+                    {players.map((player, index) => (
                         <LobbyUserItem username={player.username} isReady={player.isReady} key={index} />
                     ))}
                 </ul>

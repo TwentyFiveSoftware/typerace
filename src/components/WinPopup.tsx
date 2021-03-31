@@ -1,13 +1,13 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrophy, faUndoAlt } from '@fortawesome/free-solid-svg-icons';
 import styles from '../styles/WinPopup.module.scss';
 import Button from './Button';
-import { GameState } from '../type/GameState';
-import { socket } from '../App';
+import { GameStateContext, socket } from '../App';
 
-const WinPopup: FunctionComponent<{ gameState: GameState }> = ({ gameState }) => {
-    const { players } = gameState;
+const WinPopup: FunctionComponent = () => {
+    const gameState = useContext(GameStateContext);
+    const players = gameState?.players ?? [];
     const ranking = players.sort((a, b) => (a.finishTime > b.finishTime ? 1 : -1));
 
     if (ranking.length === 0) return <></>;
@@ -29,7 +29,7 @@ const WinPopup: FunctionComponent<{ gameState: GameState }> = ({ gameState }) =>
                             <td className={styles.playerRank}>#{index + 1}</td>
                             <td className={styles.playerName}>{player.username}</td>
                             <td className={styles.alignRight}>
-                                {Math.floor((player.finishTime - gameState.gameStartTime) / 1000)}
+                                {Math.floor((player.finishTime - (gameState?.gameStartTime ?? 0)) / 1000)}
                                 <span className={styles.textLight}>s</span>
                             </td>
                             <td className={styles.alignRight}>

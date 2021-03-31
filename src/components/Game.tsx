@@ -1,19 +1,20 @@
-import React, { FunctionComponent, useEffect, useState } from 'react';
+import React, { FunctionComponent, useContext, useEffect, useState } from 'react';
 import styles from '../styles/Game.module.scss';
-import { GameState } from '../type/GameState';
-import { socket } from '../App';
+import { GameStateContext, socket } from '../App';
 import ProgressInfoContainer from './ProgressInfoContainer';
 import Road from './Road';
 import WinPopup from './WinPopup';
 
 const PLAYER_COLORS = ['#74B9FF', '#83A868', '#FCAC6F', '#DF4A70', '#BE9CFC'];
 
-const Game: FunctionComponent<{ gameState: GameState }> = ({ gameState }) => {
+const Game: FunctionComponent = () => {
     const [currentTextPosition, setCurrentTextPosition] = useState<number>(0);
+
+    const gameState = useContext(GameStateContext);
 
     useEffect(() => {
         const onKeyDown = (e: KeyboardEvent) => {
-            if (gameState.text[currentTextPosition] === e.key) {
+            if (gameState?.text[currentTextPosition] === e.key) {
                 setCurrentTextPosition(currentTextPosition + 1);
                 socket.emit('gameUpdate', currentTextPosition + 1);
             }
@@ -26,12 +27,12 @@ const Game: FunctionComponent<{ gameState: GameState }> = ({ gameState }) => {
         return () => {
             window.removeEventListener('keydown', onKeyDown);
         };
-    }, [currentTextPosition, gameState.text]);
+    }, [currentTextPosition, gameState?.text]);
 
     return (
         <div className={styles.game}>
             <div className={styles.playerSpace}>
-                {gameState.players.map((player, index) => (
+                {gameState?.players.map((player, index) => (
                     <Road
                         key={index}
                         username={player.username}
@@ -44,10 +45,10 @@ const Game: FunctionComponent<{ gameState: GameState }> = ({ gameState }) => {
             </div>
 
             <div>
-                <ProgressInfoContainer currentTextPosition={currentTextPosition} gameState={gameState} />
+                <ProgressInfoContainer currentTextPosition={currentTextPosition} />
             </div>
 
-            {gameState.isFinished && <WinPopup gameState={gameState} />}
+            {gameState?.isFinished && <WinPopup />}
         </div>
     );
 };

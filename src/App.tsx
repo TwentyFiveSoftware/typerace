@@ -1,14 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 import { io } from 'socket.io-client';
 import styles from './styles/App.module.scss';
+import { LobbyState } from './type/LobbyState';
+import { GameState } from './type/GameState';
 import Header from './components/Header';
 import JoinLobby from './components/JoinLobby';
 import Lobby from './components/Lobby';
-import { LobbyState } from './type/LobbyState';
 import Game from './components/Game';
-import { GameState } from './type/GameState';
 
 export const socket = io(process.env.REACT_APP_SOCKET_ENDPOINT ?? '');
+
+export const GameStateContext = createContext<GameState | null>(null);
+export const LobbyStateContext = createContext<LobbyState | null>(null);
 
 const App = () => {
     const [lobbyState, setLobbyState] = useState<LobbyState | null>(null);
@@ -24,13 +27,20 @@ const App = () => {
     return gameState ? (
         <div className={styles.page}>
             <Header />
-            <Game gameState={gameState} />
+
+            <GameStateContext.Provider value={gameState}>
+                <Game />
+            </GameStateContext.Provider>
         </div>
     ) : (
         <div className={styles.page}>
             <Header />
             {!lobbyState && <JoinLobby />}
-            {lobbyState && <Lobby lobbyState={lobbyState} />}
+            {lobbyState && (
+                <LobbyStateContext.Provider value={lobbyState}>
+                    <Lobby />
+                </LobbyStateContext.Provider>
+            )}
         </div>
     );
 };

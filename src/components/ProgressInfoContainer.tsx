@@ -1,12 +1,9 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useContext } from 'react';
 import styles from '../styles/ProgressInfoContainer.module.scss';
-import { GameState } from '../type/GameState';
-import { socket } from '../App';
+import { GameStateContext, socket } from '../App';
 
-const ProgressInfoContainer: FunctionComponent<{ gameState: GameState; currentTextPosition: number }> = ({
-    gameState,
-    currentTextPosition,
-}) => {
+const ProgressInfoContainer: FunctionComponent<{ currentTextPosition: number }> = ({ currentTextPosition }) => {
+    const gameState = useContext(GameStateContext) ?? { text: '', players: [], gameStartTime: 0 };
     const { text, players, gameStartTime } = gameState;
     const player = players.find(player => player.socketId === socket.id);
 
