@@ -1,5 +1,7 @@
 .lobby {
-
+    display: flex;
+    align-items: flex-start;
+    column-gap: 4rem;
 }
 
 .title {
@@ -32,4 +34,27 @@
     display: flex;
     flex-direction: column;
     gap: 1.2rem;
+}
+
+.cars {
+    width: max-content;
+    display: grid;
+    grid-template-columns: 5rem 5rem;
+    gap: 2rem;
+}
+
+.car {
+    font-size: 3.5rem;
+    color: var(--color-dark-gray);
+    cursor: pointer;
+
+    &:hover {
+        color: var(--color-light-gray);
+    }
+}
+
+.car__selected {
+    @extend .car;
+
+    color: var(--color-accent);
 }

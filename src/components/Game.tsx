@@ -38,6 +38,7 @@ const Game: FunctionComponent<{ gameState: GameState }> = ({ gameState }) => {
                         speed={player.typingSpeed}
                         progress={Math.floor((player.currentTextPosition * 100) / gameState.text.length)}
                         color={PLAYER_COLORS[index % PLAYER_COLORS.length]}
+                        carIndex={player.carIndex}
                     />
                 ))}
             </div>
