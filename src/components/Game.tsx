@@ -1,6 +1,8 @@
 import React, { FunctionComponent, useContext, useEffect, useState } from 'react';
 import styles from '../styles/Game.module.scss';
 import { GameStateContext, socket } from '../App';
+import { SocketRequestType } from '../type/SocketRequestType';
+import { SocketResponseType } from '../type/SocketResponseType';
 import ProgressInfoContainer from './ProgressInfoContainer';
 import Road from './Road';
 import WinPopup from './WinPopup';
@@ -16,13 +18,13 @@ const Game: FunctionComponent = () => {
         const onKeyDown = (e: KeyboardEvent) => {
             if (gameState?.text[currentTextPosition] === e.key) {
                 setCurrentTextPosition(currentTextPosition + 1);
-                socket.emit('gameUpdate', currentTextPosition + 1);
+                socket.emit(SocketRequestType.GAME_UPDATE, currentTextPosition + 1);
             }
         };
 
         window.addEventListener('keydown', onKeyDown);
 
-        socket.on('restart', () => setCurrentTextPosition(0));
+        socket.on(SocketResponseType.GAME_RESTART, () => setCurrentTextPosition(0));
 
         return () => {
             window.removeEventListener('keydown', onKeyDown);

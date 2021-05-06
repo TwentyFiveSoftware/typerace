@@ -5,6 +5,7 @@ import Container from './Container';
 import Button from './Button';
 import LobbyUserItem from './LobbyUserItem';
 import { LobbyStateContext, socket } from '../App';
+import { SocketRequestType } from '../type/SocketRequestType';
 import {
     faBabyCarriage,
     faCaravan,
@@ -50,7 +51,7 @@ const Lobby: FunctionComponent = () => {
                 </ul>
 
                 <div className={styles.separator} />
-                <Button text={'READY'} onClick={() => socket.emit('toggleReady')} />
+                <Button text={'READY'} onClick={() => socket.emit(SocketRequestType.LOBBY_TOGGLE_READY)} />
             </Container>
 
             <Container small={true}>
@@ -59,7 +60,7 @@ const Lobby: FunctionComponent = () => {
                         <div
                             key={index}
                             className={index === myCarIndex ? styles.car__selected : styles.car}
-                            onClick={() => socket.emit('switchCar', index)}
+                            onClick={() => socket.emit(SocketRequestType.LOBBY_SWITCH_CAR, index)}
                         >
                             <FontAwesomeIcon icon={icon} />
                         </div>

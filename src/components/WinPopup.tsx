@@ -2,8 +2,9 @@ import React, { FunctionComponent, useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrophy, faUndoAlt } from '@fortawesome/free-solid-svg-icons';
 import styles from '../styles/WinPopup.module.scss';
-import Button from './Button';
+import { SocketRequestType } from '../type/SocketRequestType';
 import { GameStateContext, socket } from '../App';
+import Button from './Button';
 
 const WinPopup: FunctionComponent = () => {
     const gameState = useContext(GameStateContext);
@@ -46,7 +47,11 @@ const WinPopup: FunctionComponent = () => {
                     ))}
                 </table>
                 <div className={styles.bottom}>
-                    <Button text={'PLAY AGAIN'} small={true} onClick={() => socket.emit('togglePlayAgain')} />
+                    <Button
+                        text={'PLAY AGAIN'}
+                        small={true}
+                        onClick={() => socket.emit(SocketRequestType.GAME_TOGGLE_PLAY_AGAIN)}
+                    />
                 </div>
             </div>
         </>

@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { socket } from '../App';
 import styles from '../styles/JoinLobby.module.scss';
+import { SocketRequestType } from '../type/SocketRequestType';
+import { SocketResponseType } from '../type/SocketResponseType';
 import Container from './Container';
 import InputBox from './InputBox';
 import Button from './Button';
@@ -12,11 +14,11 @@ const JoinLobby = () => {
     const [incorrectUsername, setIncorrectUsername] = useState<boolean>(false);
     const [lobbyNotFound, setLobbyNotFound] = useState<boolean>(false);
 
-    const submit = () => socket.emit('joinLobby', username, lobbyId);
+    const submit = () => socket.emit(SocketRequestType.LOBBY_JOIN, username, lobbyId);
 
     useEffect(() => {
-        socket.on('errorIncorrectUsername', () => setIncorrectUsername(true));
-        socket.on('errorLobbyNotFound', () => setLobbyNotFound(true));
+        socket.on(SocketResponseType.LOBBY_ERROR_INCORRECT_USERNAME, () => setIncorrectUsername(true));
+        socket.on(SocketResponseType.LOBBY_ERROR_NOT_FOUND, () => setLobbyNotFound(true));
     }, []);
 
     return (
