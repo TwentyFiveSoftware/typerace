@@ -1,14 +1,16 @@
-import React, { FunctionComponent } from 'react';
+import React from 'react';
 import styles from '../styles/Button.module.scss';
 
-const Button: FunctionComponent<{ text: string; onClick: Function; small?: boolean }> = ({
-    text,
-    onClick,
-    small = false,
-}) => (
-    <div className={small ? styles.button__small : styles.button} onClick={() => onClick()}>
+interface Props {
+    text: string;
+    onClick: () => void;
+    small?: boolean;
+}
+
+const Button: React.FC<Props> = ({ text, onClick, small = false }: Props) => (
+    <button className={`${styles.button} ${small ? styles.button__small : ''}`} onClick={onClick}>
         {text}
-    </div>
+    </button>
 );
 
 export default Button;

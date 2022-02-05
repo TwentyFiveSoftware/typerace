@@ -10,7 +10,6 @@
 }
 
 .label__error {
-    @extend .label;
     color: var(--color-error);
 }
 
@@ -27,6 +26,5 @@
 }
 
 .inputBox__error {
-    @extend .inputBox;
     color: var(--color-error);
 }

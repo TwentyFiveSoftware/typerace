@@ -1,8 +1,13 @@
-import React, { FunctionComponent } from 'react';
+import React from 'react';
 import styles from '../styles/Container.module.scss';
 
-const Container: FunctionComponent<{ small?: boolean }> = ({ children, small = false }) => {
-    return <section className={small ? styles.container__small : styles.container}>{children}</section>;
+interface Props {
+    small?: boolean;
+    children: React.ReactNode;
+}
+
+const Container: React.FC<Props> = ({ children, small = false }: Props) => {
+    return <section className={`${styles.container} ${small ? styles.container__small : ''}`}>{children}</section>;
 };
 
 export default Container;

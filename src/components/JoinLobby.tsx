@@ -7,7 +7,7 @@ import Container from './Container';
 import InputBox from './InputBox';
 import Button from './Button';
 
-const JoinLobby = () => {
+const JoinLobby: React.FC = () => {
     const [username, setUsername] = useState<string>('');
     const [lobbyId, setLobbyId] = useState<string>('');
 
@@ -22,7 +22,7 @@ const JoinLobby = () => {
     }, []);
 
     return (
-        <div onKeyDown={e => (e.key === 'Enter' ? submit() : null)}>
+        <div onKeyDown={e => e.key === 'Enter' && submit()}>
             <Container>
                 <InputBox
                     label={'USERNAME'}
@@ -31,6 +31,7 @@ const JoinLobby = () => {
                         if (incorrectUsername) setIncorrectUsername(false);
                         setUsername(v);
                     }}
+                    autoFocus={true}
                     length={30}
                     error={incorrectUsername}
                 />
