@@ -1,6 +1,6 @@
-import React, { FunctionComponent, useContext } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React, { useContext } from 'react';
 import styles from '../styles/Lobby.module.scss';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Container from './Container';
 import Button from './Button';
 import LobbyUserItem from './LobbyUserItem';
@@ -30,13 +30,13 @@ export const CAR_ICONS = [
     faTruckMonster,
 ];
 
-const Lobby: FunctionComponent = () => {
+const Lobby: React.FC = () => {
     const { lobbyId, players } = useContext(LobbyStateContext) ?? { lobbyId: '', players: [] };
 
     const myCarIndex = players.find(player => player.socketId === socket.id)?.carIndex ?? 0;
 
     return (
-        <div className={styles.lobby}>
+        <main className={styles.lobby}>
             <Container>
                 <h1 className={styles.title}>LOBBY</h1>
                 <p className={styles.subtitle}>
@@ -59,7 +59,7 @@ const Lobby: FunctionComponent = () => {
                     {CAR_ICONS.map((icon, index) => (
                         <div
                             key={index}
-                            className={index === myCarIndex ? styles.car__selected : styles.car}
+                            className={`${styles.car} ${index === myCarIndex ? styles.car__selected : ''}`}
                             onClick={() => socket.emit(SocketRequestType.LOBBY_SWITCH_CAR, index)}
                         >
                             <FontAwesomeIcon icon={icon} />
@@ -67,7 +67,7 @@ const Lobby: FunctionComponent = () => {
                     ))}
                 </div>
             </Container>
-        </div>
+        </main>
     );
 };
 

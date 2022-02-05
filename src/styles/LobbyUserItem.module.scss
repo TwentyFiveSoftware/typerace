@@ -9,8 +9,6 @@
 }
 
 .container__ready {
-    @extend .container;
-
     border-color: var(--color-accent);
 }
 

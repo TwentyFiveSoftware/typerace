@@ -79,10 +79,9 @@
     white-space: nowrap;
 }
 
-.text__light {
-    @extend .text;
-
+.lightText {
     color: var(--color-text-light);
+    white-space: nowrap;
 }
 
 .space {
@@ -109,5 +108,4 @@
             }
         }
     }
-
 }

@@ -10,12 +10,13 @@
 
 .lightText {
     font-size: 1.7rem;
-    color: var(--color-light-gray);
     font-weight: 600;
+    color: var(--color-light-gray);
 }
 
 .lighterText {
-    @extend .lightText;
+    font-size: 1.7rem;
+    font-weight: 600;
     color: var(--color-dark-gray);
 }
 
@@ -42,7 +43,7 @@
     height: 5rem;
 }
 
-.useableRoad {
+.usableRoad {
     width: calc(100% - 6rem);
     padding-left: 1rem;
 }

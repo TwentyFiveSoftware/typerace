@@ -1,11 +1,16 @@
-import React, { FunctionComponent } from 'react';
+import React from 'react';
+import styles from '../styles/LobbyUserItem.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
-import styles from '../styles/LobbyUserItem.module.scss';
 
-const LobbyUserItem: FunctionComponent<{ username: string; isReady: boolean }> = ({ username, isReady }) => {
+interface Props {
+    username: string;
+    isReady: boolean;
+}
+
+const LobbyUserItem: React.FC<Props> = ({ username, isReady }: Props) => {
     return (
-        <div className={isReady ? styles.container__ready : styles.container}>
+        <div className={`${styles.container} ${isReady ? styles.container__ready : ''}`}>
             <p className={styles.username}>{username}</p>
             {isReady && <FontAwesomeIcon icon={faCheckCircle} className={styles.readyIcon} />}
         </div>

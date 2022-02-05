@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { socket } from '../App';
 import styles from '../styles/JoinLobby.module.scss';
+import { socket } from '../App';
 import { SocketRequestType } from '../type/SocketRequestType';
 import { SocketResponseType } from '../type/SocketResponseType';
 import Container from './Container';
@@ -22,7 +22,7 @@ const JoinLobby: React.FC = () => {
     }, []);
 
     return (
-        <div onKeyDown={e => e.key === 'Enter' && submit()}>
+        <main onKeyDown={e => e.key === 'Enter' && submit()}>
             <Container>
                 <InputBox
                     label={'USERNAME'}
@@ -51,7 +51,7 @@ const JoinLobby: React.FC = () => {
 
                 <Button text={lobbyId.length === 0 ? 'CREATE LOBBY' : 'JOIN'} onClick={() => submit()} />
             </Container>
-        </div>
+        </main>
     );
 };
 

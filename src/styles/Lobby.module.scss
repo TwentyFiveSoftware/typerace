@@ -54,7 +54,5 @@
 }
 
 .car__selected {
-    @extend .car;
-
     color: var(--color-accent);
 }

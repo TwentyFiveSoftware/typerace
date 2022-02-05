@@ -1,12 +1,12 @@
-import React, { FunctionComponent, useContext } from 'react';
+import React, { useContext } from 'react';
+import styles from '../styles/WinPopup.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrophy, faUndoAlt } from '@fortawesome/free-solid-svg-icons';
-import styles from '../styles/WinPopup.module.scss';
 import { SocketRequestType } from '../type/SocketRequestType';
 import { GameStateContext, socket } from '../App';
 import Button from './Button';
 
-const WinPopup: FunctionComponent = () => {
+const WinPopup: React.FC = () => {
     const gameState = useContext(GameStateContext);
     const players = gameState?.players ?? [];
     const ranking = players.sort((a, b) => (a.finishTime > b.finishTime ? 1 : -1));

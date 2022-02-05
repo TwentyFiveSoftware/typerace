@@ -1,16 +1,18 @@
-import React, { FunctionComponent } from 'react';
+import React from 'react';
+import styles from '../styles/Road.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFlagCheckered } from '@fortawesome/free-solid-svg-icons';
-import styles from '../styles/Road.module.scss';
 import { CAR_ICONS } from './Lobby';
 
-const Road: FunctionComponent<{
+interface Props {
     username: string;
     speed: number;
     progress: number;
     color: string;
     carIndex: number;
-}> = ({ username, speed, progress, color, carIndex }) => {
+}
+
+const Road: React.FC<Props> = ({ username, speed, progress, color, carIndex }: Props) => {
     return (
         <section className={styles.container}>
             <div className={styles.userInfoRow}>
@@ -25,7 +27,7 @@ const Road: FunctionComponent<{
             </div>
             <div className={styles.roadContainer}>
                 <div className={styles.road}>
-                    <div className={styles.useableRoad}>
+                    <div className={styles.usableRoad}>
                         <div style={{ marginLeft: `${progress}%`, marginBottom: 10 }} className={styles.carBox}>
                             <FontAwesomeIcon
                                 icon={CAR_ICONS[carIndex]}

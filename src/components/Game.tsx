@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import styles from '../styles/Game.module.scss';
 import { GameStateContext, socket } from '../App';
 import { SocketRequestType } from '../type/SocketRequestType';
@@ -9,10 +9,10 @@ import WinPopup from './WinPopup';
 
 const PLAYER_COLORS = ['#74B9FF', '#83A868', '#FCAC6F', '#DF4A70', '#BE9CFC'];
 
-const Game: FunctionComponent = () => {
-    const [currentTextPosition, setCurrentTextPosition] = useState<number>(0);
-
+const Game: React.FC = () => {
     const gameState = useContext(GameStateContext);
+
+    const [currentTextPosition, setCurrentTextPosition] = useState<number>(0);
 
     useEffect(() => {
         const onKeyDown = (e: KeyboardEvent) => {
@@ -32,7 +32,7 @@ const Game: FunctionComponent = () => {
     }, [currentTextPosition, gameState?.text]);
 
     return (
-        <div className={styles.game}>
+        <main className={styles.game}>
             <div className={styles.playerSpace}>
                 {gameState?.players.map((player, index) => (
                     <Road
@@ -49,7 +49,7 @@ const Game: FunctionComponent = () => {
             <ProgressInfoContainer currentTextPosition={currentTextPosition} />
 
             {gameState?.isFinished && <WinPopup />}
-        </div>
+        </main>
     );
 };
 
