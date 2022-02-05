@@ -46,9 +46,7 @@ const Game: FunctionComponent = () => {
                 ))}
             </div>
 
-            <div>
-                <ProgressInfoContainer currentTextPosition={currentTextPosition} />
-            </div>
+            <ProgressInfoContainer currentTextPosition={currentTextPosition} />
 
             {gameState?.isFinished && <WinPopup />}
         </div>
