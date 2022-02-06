@@ -1,6 +1,8 @@
 import React, { useContext } from 'react';
 import styles from '../styles/ProgressInfoContainer.module.scss';
 import { GameStateContext, socket } from '../App';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCheck } from '@fortawesome/free-solid-svg-icons';
 
 interface Props {
     currentTextPosition: number;
@@ -17,15 +19,21 @@ const ProgressInfoContainer: React.FC<Props> = ({ currentTextPosition }: Props) 
 
     return (
         <section className={styles.container}>
-            <div className={styles.top}>
-                <div className={styles.table}>
-                    <span className={styles.lightText}>
-                        <div>{text.substring(0, currentTextPosition)}</div>
-                    </span>
-                    <span className={styles.text}>{text[currentTextPosition]}</span>
-                    <span className={styles.text}>{text.substring(currentTextPosition + 1)}</span>
+            {player.isFinished ? (
+                <div className={styles.top__finished}>
+                    <FontAwesomeIcon icon={faCheck} className={styles.finishedIcon} />
                 </div>
-            </div>
+            ) : (
+                <div className={styles.top}>
+                    <div className={styles.table}>
+                        <span className={styles.lightText}>
+                            <div>{text.substring(0, currentTextPosition)}</div>
+                        </span>
+                        <span className={styles.text}>{text[currentTextPosition]}</span>
+                        <span className={styles.text}>{text.substring(currentTextPosition + 1)}</span>
+                    </div>
+                </div>
+            )}
             <div className={styles.bottom}>
                 <div>
                     <span className={styles.text}>{player.typingSpeed}</span>

@@ -33,6 +33,17 @@
     }
 }
 
+.top__finished {
+    background-color: var(--color-main-light);
+    border-radius: 1rem;
+    padding: 0 1rem;
+    position: relative;
+    overflow: hidden;
+    height: 7.7rem;
+    display: grid;
+    place-items: center;
+}
+
 .bottom {
     background-color: var(--color-main-light);
     border-radius: 1rem;
@@ -99,13 +110,34 @@
         min-width: 0;
         overflow: hidden;
 
-        &:first-child  {
+        &:first-child {
             overflow: hidden;
             text-align: right;
 
             div {
                 float: right;
             }
+        }
+    }
+}
+
+.finishedIcon {
+    animation: forwards 0.4s finished ease-in;
+    animation-delay: 0.5s;
+    opacity: 0;
+    font-size: 3rem;
+    color: var(--color-text-light);
+
+    @keyframes finished {
+        0% {
+        }
+        60% {
+            font-size: 4rem;
+            opacity: 1;
+        }
+        100% {
+            font-size: 3rem;
+            opacity: 1;
         }
     }
 }
