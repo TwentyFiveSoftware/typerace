@@ -22,21 +22,15 @@ const App: React.FC = () => {
         socket.on(SocketResponseType.GAME_UPDATE, (gameState: GameState) => setGameState(gameState));
     }, []);
 
-    console.log(gameState);
-
     return (
         <div className={styles.page}>
-            {!gameState && !lobbyState && <JoinLobby />}
-            {!gameState && lobbyState && (
-                <LobbyStateContext.Provider value={lobbyState}>
-                    <Lobby />
-                </LobbyStateContext.Provider>
-            )}
-            {gameState && (
+            <LobbyStateContext.Provider value={lobbyState}>
                 <GameStateContext.Provider value={gameState}>
-                    <Game />
+                    {!gameState && !lobbyState && <JoinLobby />}
+                    {(!gameState || gameState.isFinished) && lobbyState && <Lobby />}
+                    {gameState && !gameState.isFinished && <Game />}
                 </GameStateContext.Provider>
-            )}
+            </LobbyStateContext.Provider>
         </div>
     );
 };

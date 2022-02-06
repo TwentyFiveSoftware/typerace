@@ -13,12 +13,17 @@ const JoinLobby: React.FC = () => {
 
     const [incorrectUsername, setIncorrectUsername] = useState<boolean>(false);
     const [lobbyNotFound, setLobbyNotFound] = useState<boolean>(false);
+    const [gameOngoing, setGameOngoing] = useState<boolean>(false);
 
-    const submit = () => socket.emit(SocketRequestType.LOBBY_JOIN, username, lobbyId);
+    const submit = () => {
+        socket.emit(SocketRequestType.LOBBY_JOIN, username, lobbyId);
+        setGameOngoing(false);
+    };
 
     useEffect(() => {
         socket.on(SocketResponseType.LOBBY_ERROR_INCORRECT_USERNAME, () => setIncorrectUsername(true));
         socket.on(SocketResponseType.LOBBY_ERROR_NOT_FOUND, () => setLobbyNotFound(true));
+        socket.on(SocketResponseType.LOBBY_ERROR_GAME_ONGOING, () => setGameOngoing(true));
     }, []);
 
     return (
@@ -46,6 +51,14 @@ const JoinLobby: React.FC = () => {
                     length={5}
                     error={lobbyNotFound}
                 />
+
+                {gameOngoing && (
+                    <div className={styles.error}>
+                        Sorry, you can't join the lobby while the game is ongoing.
+                        <br />
+                        Please wait for the race to end and join for the next round!
+                    </div>
+                )}
 
                 <div className={styles.spacer} />
 

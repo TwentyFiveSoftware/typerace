@@ -2,14 +2,13 @@
     display: flex;
     align-items: flex-start;
     column-gap: 4rem;
-    padding: 5rem;
+    padding: 2rem;
 }
 
 .title {
     color: var(--color-text-light);
     font-size: 5rem;
     font-weight: 700;
-    letter-spacing: 0.2em;
     text-align: center;
 }
 
@@ -23,7 +22,7 @@
     }
 }
 
-.separator {
+.divider {
     margin: 4rem 0;
     height: 0.3rem;
     width: 7rem;

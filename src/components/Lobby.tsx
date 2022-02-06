@@ -17,6 +17,7 @@ import {
     faTruckMoving,
     faTruckPickup,
 } from '@fortawesome/free-solid-svg-icons';
+import WinInfo from './WinInfo';
 
 export const CAR_ICONS = [
     faCarSide,
@@ -37,12 +38,14 @@ const Lobby: React.FC = () => {
 
     return (
         <main className={styles.lobby}>
+            <WinInfo />
+
             <Container>
                 <h1 className={styles.title}>LOBBY</h1>
                 <p className={styles.subtitle}>
                     ID: <span>{lobbyId}</span>
                 </p>
-                <div className={styles.separator} />
+                <div className={styles.divider} />
 
                 <ul className={styles.users}>
                     {players.map((player, index) => (
@@ -55,7 +58,7 @@ const Lobby: React.FC = () => {
                     ))}
                 </ul>
 
-                <div className={styles.separator} />
+                <div className={styles.divider} />
                 <Button text={'READY'} onClick={() => socket.emit(SocketRequestType.LOBBY_TOGGLE_READY)} />
             </Container>
 
