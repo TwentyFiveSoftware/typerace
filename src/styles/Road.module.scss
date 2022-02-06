@@ -6,6 +6,10 @@
     display: flex;
     justify-content: flex-start;
     margin-bottom: 1rem;
+    white-space: pre;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-width: 100%;
 }
 
 .lightText {
@@ -33,8 +37,7 @@
 .userInfoRowSpacer {
     font-size: 1.7rem;
     color: var(--color-dark-gray);
-    width: 2.5rem;
-    text-align: center;
+    margin: 0 1rem;
 }
 
 .road {

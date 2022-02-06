@@ -16,14 +16,12 @@ const Road: React.FC<Props> = ({ username, speed, progress, color, carIndex }: P
     return (
         <section className={styles.container}>
             <div className={styles.userInfoRow}>
-                <p className={styles.lightText}>{username}</p>
-                <div className={styles.userInfoRowSpacer}>
-                    <p> · </p>
-                </div>
                 <p className={styles.lightText}>
                     {`${speed} `}
                     <span className={styles.lighterText}>K/min</span>
                 </p>
+                <p className={styles.userInfoRowSpacer}>·</p>
+                <p className={styles.lightText}>{username}</p>
             </div>
             <div className={styles.roadContainer}>
                 <div className={styles.road}>

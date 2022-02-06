@@ -3,9 +3,7 @@
     max-width: 100rem;
     height: 100%;
     display: grid;
-    grid-template-rows: 1fr 25rem;
-    padding: 2rem;
-    row-gap: 3rem;
+    grid-template-rows: minmax(1fr, max-content) max-content;
 }
 
 .playerSpace {
@@ -13,21 +11,11 @@
     flex-direction: column;
     overflow-y: auto;
     height: max-content;
-    max-height: calc(100vh - 35rem);
-    padding-right: 1rem;
+    max-height: calc(100vh - 30rem);
     align-self: center;
+    padding: 0 1rem;
+}
 
-    &::-webkit-scrollbar-track {
-        background-color: var(--color-main);
-    }
-
-    &::-webkit-scrollbar {
-        width: 0.5rem;
-        background-color: var(--color-main);
-    }
-
-    &::-webkit-scrollbar-thumb {
-        background-color: var(--color-main-light);
-        border-radius: 1rem;
-    }
+.typingSpace {
+    padding: 0 1rem;
 }

@@ -46,7 +46,9 @@ const Game: React.FC = () => {
                 ))}
             </div>
 
-            <ProgressInfoContainer currentTextPosition={currentTextPosition} />
+            <div className={styles.typingSpace}>
+                <ProgressInfoContainer currentTextPosition={currentTextPosition} />
+            </div>
 
             {gameState?.isFinished && <WinPopup />}
         </main>
