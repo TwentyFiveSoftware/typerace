@@ -46,7 +46,12 @@ const Lobby: React.FC = () => {
 
                 <ul className={styles.users}>
                     {players.map((player, index) => (
-                        <LobbyUserItem username={player.username} isReady={player.isReady} key={index} />
+                        <LobbyUserItem
+                            username={player.username}
+                            carIndex={player.carIndex}
+                            isReady={player.isReady}
+                            key={index}
+                        />
                     ))}
                 </ul>
 

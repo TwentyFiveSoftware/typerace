@@ -3,7 +3,8 @@
     border-radius: 0.5rem;
     padding: 1.4rem 2rem;
     display: grid;
-    grid-template-columns: 1fr max-content;
+    grid-template-columns: 2rem 1fr max-content;
+    column-gap: 1rem;
     align-items: center;
     border: 0.2rem solid var(--color-main-light);
 }
@@ -12,9 +13,17 @@
     border-color: var(--color-accent);
 }
 
+.carIcon {
+    font-size: 1.5rem;
+    color: var(--color-light-gray);
+}
+
 .username {
     font-size: 1.5rem;
     color: var(--color-text);
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 .readyIcon {
