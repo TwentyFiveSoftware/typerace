@@ -12,10 +12,11 @@ const Game: React.FC = () => {
     const gameState = useContext(GameStateContext);
 
     const [currentTextPosition, setCurrentTextPosition] = useState<number>(0);
+    const [countdown, setCountdown] = useState<number>(-1);
 
     useEffect(() => {
         const onKeyDown = (e: KeyboardEvent) => {
-            if (gameState?.text[currentTextPosition] === e.key) {
+            if (gameState?.text[currentTextPosition] === e.key && Date.now() >= gameState.gameStartTime) {
                 setCurrentTextPosition(currentTextPosition + 1);
                 socket.emit(SocketRequestType.GAME_UPDATE, currentTextPosition + 1);
             }
@@ -28,8 +29,39 @@ const Game: React.FC = () => {
         };
     }, [currentTextPosition, gameState?.text]);
 
+    useEffect(() => {
+        if (!gameState?.gameStartTime || Date.now() >= (gameState.gameStartTime ?? 0)) {
+            setCountdown(-1);
+            return;
+        }
+
+        setCountdown(Math.floor((gameState.gameStartTime - Date.now()) / 1000));
+
+        const interval = setInterval(() => {
+            setCountdown(Math.floor((gameState.gameStartTime - Date.now()) / 1000));
+
+            if (Date.now() >= gameState.gameStartTime) {
+                setCountdown(-1);
+                clearInterval(interval);
+            }
+        }, 500);
+
+        return () => {
+            clearInterval(interval);
+        };
+    }, [gameState?.gameStartTime]);
+
     return (
         <main className={styles.game}>
+            {countdown >= 0 && (
+                <div className={styles.countdownWrapper}>
+                    <div className={styles.countdownOverlay} />
+                    <div className={styles.countdown}>
+                        <h1 key={countdown}>{countdown === 0 ? 'GO' : countdown}</h1>
+                    </div>
+                </div>
+            )}
+
             <div className={styles.playerSpace}>
                 {gameState?.players.map((player, index) => (
                     <Road
