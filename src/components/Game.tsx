@@ -27,7 +27,7 @@ const Game: React.FC = () => {
         return () => {
             window.removeEventListener('keydown', onKeyDown);
         };
-    }, [currentTextPosition, gameState?.text]);
+    }, [currentTextPosition, gameState?.text, gameState?.gameStartTime]);
 
     useEffect(() => {
         if (!gameState?.gameStartTime || Date.now() >= (gameState.gameStartTime ?? 0)) {
