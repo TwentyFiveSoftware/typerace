@@ -51,6 +51,8 @@ const Game: React.FC = () => {
         };
     }, [gameState?.gameStartTime]);
 
+    if (!gameState) return <></>;
+
     return (
         <main className={styles.game}>
             {countdown >= 0 && (
@@ -63,7 +65,7 @@ const Game: React.FC = () => {
             )}
 
             <div className={styles.playerSpace}>
-                {gameState?.players.map((player, index) => (
+                {gameState.players.map((player, index) => (
                     <Road
                         key={player.socketId}
                         username={player.username}
@@ -79,7 +81,7 @@ const Game: React.FC = () => {
                 <ProgressInfoContainer currentTextPosition={currentTextPosition} />
             </div>
 
-            {gameState?.isFinished && <WinInfo />}
+            {gameState.isFinished && <WinInfo />}
         </main>
     );
 };
