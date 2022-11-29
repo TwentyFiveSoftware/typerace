@@ -1,4 +1,4 @@
-name: Build and Deploy
+name: Deployment
 
 on:
   push:
@@ -19,10 +19,10 @@ jobs:
       - name: Build
         run: yarn run build
         env:
-          REACT_APP_SOCKET_ENDPOINT: ${{ secrets.REACT_APP_SOCKET_ENDPOINT }}
+          VITE_SOCKET_ENDPOINT: ${{ secrets.VITE_SOCKET_ENDPOINT }}
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages
-          folder: build
+          folder: dist

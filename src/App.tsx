@@ -8,7 +8,7 @@ import JoinLobby from './components/JoinLobby';
 import Lobby from './components/Lobby';
 import Game from './components/Game';
 
-export const socket = io(process.env.REACT_APP_SOCKET_ENDPOINT ?? '');
+export const socket = io(import.meta.env.VITE_SOCKET_ENDPOINT ?? '');
 
 export const GameStateContext = createContext<GameState | null>(null);
 export const LobbyStateContext = createContext<LobbyState | null>(null);
